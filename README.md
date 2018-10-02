@@ -1,8 +1,12 @@
 # Electron 3 Socket Bug Reproducer
 
+This is a reproducer for [ELECTRON-14915](https://github.com/electron/electron/issues/14915).
+
 The call to [`net.Socket.setTimeout(0)`](https://nodejs.org/api/net.html#net_socket_settimeout_timeout_callback) does not clear the socket timeout as expected in the Electron 3 renderer.
 
 It works as expected in the main process.
+
+The issue seems to be with line 418 of Node's [net.js](https://github.com/nodejs/node/blob/8c70b2084ce5f76ea1e3b3c4ccdeee4483fe338b/lib/net.js#L418), which has no effect in the renderer.
 
 ## To Run
 
