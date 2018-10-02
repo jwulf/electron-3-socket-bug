@@ -20,7 +20,7 @@ async function createWindow () {
 	server.listen(8124, () => {
 		console.log('Socket server started');
 		const s = new createConnection({port: 8124, timeout:3000}, () => {
-			console.log('Main Connected. Clearing timeout...')
+			console.log('Main socket connected. Clearing timeout...')
 			s.setTimeout(0) // clear the socket timeout <- THIS DOES WORK
 		})
 		s.on('timeout', () => console.log('Main socket timed out. This should never be called.'))
